@@ -21,3 +21,12 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+setTime ()
+
+function setTime (){
+  var timeInterval = setInterval(function() {
+    var reformatDate = dayjs().format(`dddd, MMMM D YYYY, h:mm:ss A`);
+    $(`#currentDay`).text(reformatDate);
+    reformatDate ++;
+  },1000);
+}
