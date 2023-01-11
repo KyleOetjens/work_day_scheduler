@@ -1,7 +1,41 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-$(function () {
+$(document).ready(function () {
+  let currentHour = dayjs().hour()
+  saveButtonEl = $(`.saveBtn`)
+  plans = $('.description')
+  appointment = localStorage.getItem("todo")
+  plans.textContent = appointment
+  console.log(currentHour);
+  setTime()
+
+  function setTime() {
+    var timeInterval = setInterval(function () {
+      var reformatDate = dayjs().format(`dddd, MMMM D YYYY, h:mm:ss A`);
+      $(`#currentDay`).text(reformatDate);
+      reformatDate++;
+    }, 1000);
+  }
+// options are past, present and future
+  $(".time-block").each(function () {
+    let blockHour = parseInt($(this).attr("id"))     
+if (currentHour < blockHour) {
+      $(this).addClass(`future`)
+    }
+    else if (currentHour === blockHour) {
+      $(this).addClass(`present`)
+    }
+    else {
+      $(this).addClass(`past`)
+    }
+  })
+  // on click of save button, text needs to be saved to local storage
+  // so that it will show up later
+saveButtonEl.on('click', function (){
+  plans
+  this.localStorage.setItem('toDo',plans)
+})
+  //function savePlans (){}
+
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -21,12 +55,3 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
-setTime ()
-
-function setTime (){
-  var timeInterval = setInterval(function() {
-    var reformatDate = dayjs().format(`dddd, MMMM D YYYY, h:mm:ss A`);
-    $(`#currentDay`).text(reformatDate);
-    reformatDate ++;
-  },1000);
-}
