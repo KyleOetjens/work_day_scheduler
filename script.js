@@ -5,8 +5,11 @@ $(document).ready(function () {
   appointment = localStorage.getItem("todo")
   plans.textContent = appointment
   console.log(currentHour);
+  let plans1 = plans.val()
+  var rootEl = $('#root');
   setTime()
 
+  console.log(plans);
   function setTime() {
     var timeInterval = setInterval(function () {
       var reformatDate = dayjs().format(`dddd, MMMM D YYYY, h:mm:ss A`);
@@ -16,7 +19,12 @@ $(document).ready(function () {
   }
 // options are past, present and future
   $(".time-block").each(function () {
-    let blockHour = parseInt($(this).attr("id"))     
+    let blockHour = parseInt($(this).attr("id"))   
+    let $pel = $(this)
+    let getKey = $pel.children().eq(0).text()
+    let getval = $pel.children().eq(1).val()
+    console.log(getval);
+      console.log($($pel));
 if (currentHour < blockHour) {
       $(this).addClass(`future`)
     }
@@ -26,16 +34,28 @@ if (currentHour < blockHour) {
     else {
       $(this).addClass(`past`)
     }
+    localStorage.getItem(getval)
+    //console.log($pel.children().eq(1).val());
+//console.log(($pel.siblings().eq(0).text(),$pel.siblings().eq(1).val()));
+//console.log(($pel.children().eq(0).text(),$pel.children().eq(1).val()));
+//localStorage.getItem(($pel.children().eq(0).text(),$pel.children().eq(1).val()));
   })
+
   // on click of save button, text needs to be saved to local storage
   // so that it will show up later
-saveButtonEl.on('click', function (){
-  plans
-  this.localStorage.setItem('toDo',plans)
-})
-  //function savePlans (){}
+///saveButtonEl.on('click', function (){
+  saveButtonEl.click(function (){
+    const $el = $(this)
+    let key1 = $el.siblings().eq(0).text()
+    let vall1 = $el.siblings().eq(1).val()
+    console.log($el);
+    console.log("function started");
+    console.log($el.siblings().eq(0));
+    console.log($el.siblings().eq(0).text());
+    //localStorage.setItem($el.siblings().eq(0).text(),$el.siblings().eq(1).val())
+    localStorage.setItem(key1,vall1)
 
-
+  })
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
