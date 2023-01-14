@@ -2,8 +2,6 @@ $(document).ready(function () {
   let currentHour = dayjs().hour()
   saveButtonEl = $(`.saveBtn`)
   plans = $('.description')
-  appointment = localStorage.getItem("todo")
-  plans.textContent = appointment
   console.log(currentHour);
   let plans1 = plans.val()
   var rootEl = $('#root');
@@ -17,15 +15,30 @@ $(document).ready(function () {
       reformatDate++;
     }, 1000);
   }
-// options are past, present and future
+  // options are past, present and future
   $(".time-block").each(function () {
-    let blockHour = parseInt($(this).attr("id"))   
-    let $pel = $(this)
-    let getKey = $pel.children().eq(0).text()
-    let getval = $pel.children().eq(1).val()
-    console.log(getval);
-      console.log($($pel));
-if (currentHour < blockHour) {
+    //$("#9 .description").val(localStorage.getItem("9AM"));
+    // $("#9 .description").val(localStorage.getItem("9AM"));
+    //JSON.parse(localStorage.getItem("studentGrade"));
+    let blockHour = parseInt($(this).attr("id"));
+    let $pel = $(this);
+    console.log($pel);
+    console.log(plans);
+    let foo = $pel.children(0).text()
+    let bar = $pel.children(1)
+    const ggg= $(plans).text(localStorage.getItem(bar.val()));
+    console.log(ggg);
+    console.log(foo);
+    console.log(bar);
+    //let $pel = $(this).children(1)
+    let getKey = $pel.children().val();
+    console.log(getKey);
+    let val2 = $pel.text();
+    //let getval = getKey.siblings(0).val();
+    //console.log(getval);
+    console.log(val2);
+    //$(getKey.plans).val(localStorage.getItem(val2));
+    if (currentHour < blockHour) {
       $(this).addClass(`future`)
     }
     else if (currentHour === blockHour) {
@@ -34,26 +47,23 @@ if (currentHour < blockHour) {
     else {
       $(this).addClass(`past`)
     }
-    localStorage.getItem(getval)
     //console.log($pel.children().eq(1).val());
-//console.log(($pel.siblings().eq(0).text(),$pel.siblings().eq(1).val()));
-//console.log(($pel.children().eq(0).text(),$pel.children().eq(1).val()));
-//localStorage.getItem(($pel.children().eq(0).text(),$pel.children().eq(1).val()));
+    //console.log(($pel.siblings().eq(0).text(),$pel.siblings().eq(1).val()));
+    //console.log(($pel.children().eq(0).text(),$pel.children().eq(1).val()));
+    //localStorage.getItem(($pel.children().eq(0).text(),$pel.children().eq(1).val()));
   })
 
   // on click of save button, text needs to be saved to local storage
   // so that it will show up later
-///saveButtonEl.on('click', function (){
-  saveButtonEl.click(function (){
+  ///saveButtonEl.on('click', function (){
+  saveButtonEl.click(function () {
     const $el = $(this)
     let key1 = $el.siblings().eq(0).text()
     let vall1 = $el.siblings().eq(1).val()
     console.log($el);
-    console.log("function started");
     console.log($el.siblings().eq(0));
     console.log($el.siblings().eq(0).text());
-    //localStorage.setItem($el.siblings().eq(0).text(),$el.siblings().eq(1).val())
-    localStorage.setItem(key1,vall1)
+    localStorage.setItem(key1, vall1)
 
   })
   // TODO: Add a listener for click events on the save button. This code should
@@ -74,4 +84,14 @@ if (currentHour < blockHour) {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+
+  //try making this go in to the each function using this
+  /* $("#9 .description").val(localStorage.getItem("9AM"));
+   $("#10 .description").val(localStorage.getItem("10AM"));
+   $("#11 .description").val(localStorage.getItem(`11AM`));
+   $("#12 .description").val(localStorage.getItem("12PM"));
+   $("#13 .description").val(localStorage.getItem("1PM"));
+   $("#14 .description").val(localStorage.getItem("2PM"));
+   $("#15 .description").val(localStorage.getItem("3PM"));
+   $("#16 .description").val(localStorage.getItem("4PM"));*/
 });
