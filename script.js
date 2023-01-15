@@ -23,20 +23,20 @@ $(document).ready(function () {
     let blockHour = parseInt($(this).attr("id"));
     let $pel = $(this);
     console.log($pel);
-    console.log(plans);
-    let foo = $pel.children(0).text()
-    let bar = $pel.children(1)
-    const ggg= $(plans).text(localStorage.getItem(bar.val()));
-    console.log(ggg);
+    let foo = $pel.children().eq(1).val()
     console.log(foo);
-    console.log(bar);
+    let bar = $pel.children(1).text()
+    //const ggg= $(plans).text(localStorage.getItem(foo));
     //let $pel = $(this).children(1)
     let getKey = $pel.children().val();
     console.log(getKey);
     let val2 = $pel.text();
+    $pel.children().eq(1).text(localStorage.getItem($pel.children().eq(0).val()));
     //let getval = getKey.siblings(0).val();
     //console.log(getval);
     console.log(val2);
+    console.log(foo);
+    this.bar.text(localStorage.getItem("9AM"));
     //$(getKey.plans).val(localStorage.getItem(val2));
     if (currentHour < blockHour) {
       $(this).addClass(`future`)
