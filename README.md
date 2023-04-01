@@ -2,7 +2,7 @@
 
 ## Description
 
-Creating a work day schedule to practice using jquery.  
+Creating a work day schedule to practice using jquery.  Please feel free to visit at https://kyleoetjens.github.io/work_day_scheduler/
 
 ## Usage
 
